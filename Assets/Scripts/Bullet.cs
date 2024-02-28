@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.right * speed * Time.deltaTime); 
+        transform.Translate(transform.up * speed * Time.deltaTime); 
         //Transform.Translate: 괄호 안에 움직이는 만큼을 담은 vector을 넣어주면 그방향으로 움직이는 함수
         //transform.right: 소문자의 transform은 스크립트가 붙은 오브젝트의 transform component를 가리킨다; transform.right 는 오브젝트의 '오른쪽'(2D에서는 앞) 방향을 벡터로 준다
         //transform.position = transform.position + (transform.right * speed * Time.deltaTime) 랑 같음

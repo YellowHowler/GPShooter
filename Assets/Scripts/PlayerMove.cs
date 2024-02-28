@@ -29,15 +29,16 @@ public class PlayerMove : MonoBehaviour
     	transform.position += movement;
         //
 
+        
         //rotate towards mouse pointer
         Vector3 mousePos = Input.mousePosition; //현재 마우스 커서의 위치를 저장하고 있는 변수
         mousePos = Camera.main.ScreenToWorldPoint(mousePos); //Input.mouseposition 은 게임 속 세계의 좌표가 아닌 화면 상의 마우스의 좌표를 주기 때문에 변환 필요
         mousePos = new Vector3(mousePos.x, mousePos.y, 0); //변환하면 z좌표는 카메라의 z좌표를 따르기 때문데 0으로 변환 필요
  
-        
-		float angle = AngleBetweenTwoPoints(transform.position, mousePos); //Get the angle between the points
-		transform.rotation =  Quaternion.Euler (new Vector3(0f,0f,angle)); //플레이어가 mousePos 방향을 바라보게 하는 방법
+		Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+		transform.up = direction; //플레이어가 mousePos 방향을 바라보게 하는 방법
         //
+
 
         //shoot bullet when mouse clicked
         if(Input.GetMouseButton(0)) //마우스 왼쪽버튼이 눌린 상태면 true를 반환하는 함수
@@ -54,8 +55,4 @@ public class PlayerMove : MonoBehaviour
         lastShoot += Time.deltaTime; //지난 시간 (Time.deltaTime) 만큼 더해준다
         //
     }
-
-    float AngleBetweenTwoPoints(Vector3 a, Vector3 b) {
-		return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
-	}
 }
